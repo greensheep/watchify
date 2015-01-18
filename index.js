@@ -80,7 +80,7 @@ function watchify (b, opts) {
         if (!fwatcherFiles[file]) fwatcherFiles[file] = [];
         if (fwatcherFiles[file].indexOf(file) >= 0) return;
         
-        var w = chokidar.watch(file, {persistent: true});
+        var w = chokidar.watch(file, {persistent: true, usePolling: true});
         w.setMaxListeners(0);
         w.on('error', b.emit.bind(b, 'error'));
         w.on('change', function () {
@@ -95,7 +95,7 @@ function watchify (b, opts) {
         if (!fwatcherFiles[mfile]) fwatcherFiles[mfile] = [];
         if (fwatcherFiles[mfile].indexOf(file) >= 0) return;
 
-        var w = chokidar.watch(file, {persistent: true});
+        var w = chokidar.watch(file, {persistent: true, usePolling: true});
         w.setMaxListeners(0);
         w.on('error', b.emit.bind(b, 'error'));
         w.on('change', function () {
